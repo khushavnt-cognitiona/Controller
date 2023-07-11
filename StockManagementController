@@ -1,0 +1,43 @@
+package com.grocery.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.grocery.model.StockManagement;
+import com.grocery.service.StockMangeMentService;
+
+@RestController
+public class StockManagementController {
+	@Autowired
+	 StockMangeMentService mangeMentService;
+	@GetMapping("/get/product")
+ public List<StockManagement> getAllProduct(){
+	return mangeMentService.getAllProduct();
+	 
+ }
+	@PostMapping("/add/product")
+	public void AddProducts(@RequestBody List<StockManagement> managements) {
+		mangeMentService.addProducts(managements);
+	}
+	@PutMapping("/updateproduct/{productId}")
+	public void updateProduct(@PathVariable int productId ,@RequestBody StockManagement management ) {
+		mangeMentService.updateproduct(management);
+		
+	}
+	@DeleteMapping("/{productId}")
+	public void  deleteById(@PathVariable Integer productId ) {
+		
+		
+		mangeMentService.deleteById(productId);
+		
+	}
+	
+}
