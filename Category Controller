@@ -1,0 +1,23 @@
+// category Controller
+package com.grocery.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.grocery.model.CategoryModel;
+import com.grocery.service.CategoryService;
+@RestController
+public class CategoryController {
+	@Autowired
+	CategoryService categoryService;
+	@GetMapping("/all/category")
+	public List<CategoryModel> getAllCategory(){
+		
+		return categoryService.getAllCategory();
+		
+	}
+
+}
